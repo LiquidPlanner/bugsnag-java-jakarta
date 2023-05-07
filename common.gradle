@@ -1,5 +1,5 @@
 ext {
-    servletApiVersion = "3.1.0"
+    jakartaServletApiVersion = "6.0.0"
     logbackVersion = "1.2.3"
 }
 
@@ -11,8 +11,8 @@ if (project.hasProperty('releasing')) {
     apply from: "../release.gradle"
 }
 
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
+sourceCompatibility = 17
+targetCompatibility = 17
 
 test {
     testLogging {

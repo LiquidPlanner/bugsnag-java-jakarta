@@ -9,6 +9,10 @@ import com.bugsnag.callbacks.ServletCallback;
 
 import com.bugsnag.servlet.BugsnagServletRequestListener;
 
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletRequestEvent;
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,9 +22,6 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletRequestEvent;
-import javax.servlet.http.HttpServletRequest;
 
 public class ServletCallbackTest {
 

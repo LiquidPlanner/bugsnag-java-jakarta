@@ -1,6 +1,5 @@
 package com.bugsnag;
 
-import static com.bugsnag.TestUtils.anyMapOf;
 import static com.bugsnag.TestUtils.verifyAndGetReport;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
@@ -8,6 +7,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyMap;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -25,10 +25,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringBootVersion;
-import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.core.SpringVersion;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -178,7 +178,7 @@ public class SpringMvcTest {
         Report report = verifyAndGetReport(delivery);
 
         assertTrue(report.getUnhandled());
-        assertEquals("info", report.getSeverity());
+        assertEquals("error", report.getSeverity());
         assertEquals("exceptionClass", report.getSeverityReason().getType());
         assertThat(report.getSeverityReason().getAttributes(),
                 is(Collections.singletonMap("exceptionClass", "TypeMismatchException")));
@@ -269,7 +269,7 @@ public class SpringMvcTest {
         verify(delivery, times(0)).deliver(
                 any(Serializer.class),
                 any(),
-                anyMapOf(String.class, String.class));
+                anyMap());
     }
 
     private void assertSessionsStarted(int sessionsStarted) {

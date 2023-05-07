@@ -1,6 +1,6 @@
 ext {
-    springVersion = '4.3.18.RELEASE'
-    springBootVersion = '1.5.15.RELEASE'
+    springVersion = '6.0.8'
+    springBootVersion = '3.0.2'
 }
 
 apply plugin: 'java-library'
@@ -12,16 +12,17 @@ repositories {
 }
 
 dependencies {
-    compile project(':bugsnag')
-    testCompile project(path: ':bugsnag', configuration: 'testRuntime')
+    api project(':bugsnag')
+    testImplementation testFixtures(project(':bugsnag'))
 
-    compileOnly "javax.servlet:javax.servlet-api:${servletApiVersion}"
+    compileOnly "jakarta.servlet:jakarta.servlet-api:${jakartaServletApiVersion}"
+    compileOnly "javax.annotation:javax.annotation-api:1.3.2"
     compileOnly "org.springframework:spring-webmvc:${springVersion}"
     compileOnly "org.springframework.boot:spring-boot:${springBootVersion}"
     compileOnly "ch.qos.logback:logback-core:${logbackVersion}"
 
-    testCompile "junit:junit:4.13.2"
-    testCompile "javax.servlet:javax.servlet-api:${servletApiVersion}"
-    testCompile "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
-    testCompile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+    testImplementation "junit:junit:4.13.2"
+    testImplementation "jakarta.servlet:jakarta.servlet-api:${jakartaServletApiVersion}"
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+    testImplementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
 }
